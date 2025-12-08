@@ -1,0 +1,23 @@
+#ifndef MEM_H
+#define MEM_H
+
+#include <stddef.h>
+#include <core/arch/multiboot.h>
+#include <core/arch/pause.h>
+#include <core/kernel/kstd.h>
+#include <core/drivers/serial.h>
+
+extern void initializeMemoryManager(void* memoryPool, size_t size);
+extern void* memcpy(void* dest, const void* src, size_t n);
+extern void* memset(void* s, int c, size_t n);
+extern void* allocateMemory(size_t size);
+extern void freeMemory(void* ptr);
+extern void mm_test();
+extern void pause();
+extern void formatMemorySize(size_t size, char* buffer);
+
+// Aliases for convenience
+#define kmalloc allocateMemory
+#define kfree freeMemory
+
+#endif

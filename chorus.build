@@ -23,6 +23,7 @@ targets:
       - "mkdir -p ${BUILD_DIR}"
       - "mv ${@} ${BUILD_DIR}/"
       - "find . -name '*.o' -delete"
+      - "find . -name 'build_*' -delete"
 
   kasm.o:
     deps: []
@@ -179,6 +180,8 @@ targets:
     cmds:
       - "ruby initramfs-rebuild.rb"
       - "${GRUB_MKRESCUE} -o build_${DATE}.iso ${ISO_DIR}"
+      - "cp build_${DATE}.iso build/boot/data.iso"
+      - "echo 'Copied boot ISO to data.iso for next build'"
 
   run:
     phony: true

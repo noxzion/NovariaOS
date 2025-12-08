@@ -59,10 +59,8 @@ void vfs_init(void) {
         files[i].data[0] = '\0';
         files[i].type = VFS_TYPE_FILE;
     }
-    
-    // Create directory structure
+
     vfs_mkdir("/bin");
-    vfs_mkdir("/bin/drivers");
     vfs_mkdir("/bin/Nutils");
     vfs_mkdir("/lib");
     vfs_mkdir("/lib/n");
@@ -72,20 +70,12 @@ void vfs_init(void) {
     vfs_mkdir("/var");
     vfs_mkdir("/var/log");
     vfs_mkdir("/var/cache");
-    
-    // Create config files
+
     vfs_create("/etc/init.conf", "# NovariaOS init configuration\n", 32);
     vfs_create("/etc/passwd", "root:x:0:0:/:/bin/shell\n", 39);
-    
-    // Create placeholder binaries
+
     vfs_create("/bin/init", "#!/bin/nvm\n# System init\n", 26);
     vfs_create("/bin/registry", "#!/bin/nvm\n# System registry\n", 31);
-    
-    vfs_create("/bin/drivers/storage.bin", "# Storage driver\n", 17);
-    vfs_create("/bin/drivers/video.bin", "# Video driver\n", 15);
-    vfs_create("/bin/drivers/audio.bin", "# Audio driver\n", 15);
-    vfs_create("/bin/drivers/input.bin", "# Input driver\n", 15);
-    vfs_create("/bin/drivers/network.bin", "# Network driver\n", 17);
     
     vfs_create("/bin/Nutils/shell.bin", "# Shell\n", 8);
     vfs_create("/bin/Nutils/ls.bin", "# List\n", 7);
